@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    input{
+        padding: 7px;
+        height: 40px;
+    }
+
+    fieldset{
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+    <fieldset>
+        <legend>Insert Data</legend>
+        <input type="text" id="inpKey" placeholder="Enter Key...">
+        <input type="text" id="inpValue" placeholder="Enter Value...">
+        <button type="button" onclick="Btn()">Insert Data</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Local Storage</legend>
+        <div id="lsOutput"></div>
+    </fieldset>
+</body>
+<script>
+    const inpKey = document.getElementById('inpKey');
+    const inpValue = document.getElementById('inpValue');
+    // const BTN = document.getElementById('inpKey');
+    const lsOutput = document.getElementById('lsOutput');
+
+function Btn(){
+    const key = inpKey.value
+    const value = inpValue.value
+
+    console.log(key, value)
+
+    if(key && value){
+        localStorage.setItem(key, value);
+        // location.reload()??
+    } else if(key === "" || value === ""){
+        alert('Input field cannot be empty')
+    }
+
+    for (let i = 0; i < localStorage.length; i++){
+    const key1 = localStorage.key(i);
+    const value1 = localStorage.getItem(key);
+
+    lsOutput.innerHTML = `${key}: ${value}<br/>`;
+    }
+}
+</script>
+</html>
